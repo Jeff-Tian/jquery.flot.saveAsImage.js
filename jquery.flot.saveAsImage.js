@@ -1,4 +1,4 @@
-﻿/* Flot plugin that adds a function to allow user save the current graph as an image
+/* Flot plugin that adds a function to allow user save the current graph as an image
     by right clicking on the graph and then choose "Save image as ..." to local disk.
 
 Copyright (c) 2013 http://zizhujy.com.
@@ -34,19 +34,38 @@ Customizations:
 */
 
 ; (function ($, Canvas2Image) {    
-    function init(plot) {
-        plot.hooks.bindEvents.push(function (plot, eventHolder) {
-            eventHolder.mousedown(function (e) {
-                if(e.button == 2) {
-                    deleteStaleCanvasImage(plot);
-                    createImageFromCanvas(plot, plot.getOptions().imageFormat);
-                }
-            });
-        });
+    var imageCreated = null;
+
+    function init(plot, classes) {
+        plot.hooks.bindEvents.push(bindEvents);
+        plot.hooks.shutdown.push(shutdown);
+
+        function bindEvents(plot, eventHolder){
+            eventHolder.mousedown(onMouseDown);
+        }
+
+        function shutdown(plot, eventHolder){
+            eventHolder.unbind("mousedown", onMouseDown);
+        }
+
+        function onMouseDown(e){        
+            if(e.button == 2) {                        
+                // Open an API in Canvas2Image, in case you would need to call
+                // it to delete the dynamically created image.
+                //Canvas2Image.deleteStaleCanvasImage = deleteStaleCanvasImage;
+                deleteStaleCanvasImage(plot);
+                createImageFromCanvas(plot, plot.getOptions().imageFormat);
+            }
+        }
+    }
+
+    function onMouseUp(plot){
+        setTimeout( function() {deleteStaleCanvasImage(plot);}, 1);
     }
 
     function deleteStaleCanvasImage(plot) {
-        $(plot.getCanvas()).parent().find("img." + plot.getOptions().imageClassName).remove();
+        //$(plot.getCanvas()).parent().find("img." + plot.getOptions().imageClassName).unbind("mouseup", onMouseUp).remove();
+        $(imageCreated).unbind("mouseup", onMouseUp).remove();
     }
 
     function createImageFromCanvas(plot, format){
@@ -74,6 +93,9 @@ Customizations:
         $(img).attr("class", plot.getOptions().imageClassName);
         $(img).css("border", $(canvas).css("border"));
         $(img).insertBefore($(canvas));
+        $(img).mouseup(plot, onMouseUp);
+
+        imageCreated = img;
     }
 
     var options = {
@@ -88,7 +110,4 @@ Customizations:
         version: '1.1'
     });
 
-    // Open an API in Canvas2Image, in case you would need to call
-    // it to delete the dynamically created image.
-    Canvas2Image.deleteStaleCanvasImage = deleteStaleCanvasImage;
 })(jQuery, Canvas2Image);
