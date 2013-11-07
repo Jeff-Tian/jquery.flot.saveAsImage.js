@@ -33,34 +33,35 @@ Customizations:
 
 */
 
-; (function ($, Canvas2Image) {    
+; (function ($, Canvas2Image) {
     var imageCreated = null;
 
     function init(plot, classes) {
         plot.hooks.bindEvents.push(bindEvents);
         plot.hooks.shutdown.push(shutdown);
 
-        function bindEvents(plot, eventHolder){
+        function bindEvents(plot, eventHolder) {
             eventHolder.mousedown(onMouseDown);
         }
 
-        function shutdown(plot, eventHolder){
+        function shutdown(plot, eventHolder) {
             eventHolder.unbind("mousedown", onMouseDown);
         }
 
-        function onMouseDown(e){        
-            if(e.button == 2) {                        
+        function onMouseDown(e) {
+            if (e.button == 2) {
                 // Open an API in Canvas2Image, in case you would need to call
                 // it to delete the dynamically created image.
                 //Canvas2Image.deleteStaleCanvasImage = deleteStaleCanvasImage;
                 deleteStaleCanvasImage(plot);
                 createImageFromCanvas(plot, plot.getOptions().imageFormat);
+                
             }
         }
     }
 
-    function onMouseUp(plot){
-        setTimeout( function() {deleteStaleCanvasImage(plot);}, 1);
+    function onMouseUp(plot) {
+        setTimeout(function () { deleteStaleCanvasImage(plot); }, 100);
     }
 
     function deleteStaleCanvasImage(plot) {
@@ -68,10 +69,10 @@ Customizations:
         $(imageCreated).unbind("mouseup", onMouseUp).remove();
     }
 
-    function createImageFromCanvas(plot, format){
+    function createImageFromCanvas(plot, format) {
         var canvas = plot.getCanvas();
         var img = null;
-        switch(format.toLowerCase()){
+        switch (format.toLowerCase()) {
             case "png":
                 img = Canvas2Image.saveAsPNG(canvas, format);
                 break;
@@ -85,13 +86,25 @@ Customizations:
                 break;
         }
 
-        if(!img){
-            alert("Sorry, this browser is not capable of saving " + format + " files!");
+        if (!img) {
+            img = Canvas2Image.saveAsPNG(canvas, "png");
+        }
+
+        if (!img) {
+            img = Canvas2Image.saveAsPNG(canvas, "bmp");
+        }
+
+        if (!img) {
+            img = Canvas2Image.saveAsJPEG(canvas, "jpeg");
+        }
+
+        if (!img) {
+            alert(plot.getOptions().notSupportMessage || "Oh Sorry, but this browser is not capable of creating image files, please use PRINT SCREEN key instead!");
             return false;
         }
 
         $(img).attr("class", plot.getOptions().imageClassName);
-        $(img).css("border", $(canvas).css("border"));
+        $(img).css({ "border": $(canvas).css("border"), "z-index": "9999", "position": "absolute" });
         $(img).insertBefore($(canvas));
         $(img).mouseup(plot, onMouseUp);
 
@@ -107,7 +120,7 @@ Customizations:
         init: init,
         options: options,
         name: 'saveAsImage',
-        version: '1.1'
+        version: '1.2'
     });
 
 })(jQuery, Canvas2Image);
