@@ -1,0 +1,66 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flot Examples: Markings</title>
+    <link href="examples.css" rel="stylesheet" type="text/css">
+    <!-- flot -->
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../lib/excanvas.js"></script><![endif]-->
+    <script language="javascript" type="text/javascript" src="../lib/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="../lib/jquery.colorhelpers.js"></script>
+	<script language="javascript" type="text/javascript" src="../lib/jquery.flot.js"></script>
+    <script language="javascript" type="text/javascript" src="../lib/jquery.flot.canvas.js"></script>
+    
+    <!-- other dependencies -->
+    <script language="text/javascript" type="text/javascript" src="../lib/base64.js"></script>
+    <script language="text/javascript" type="text/javascript" src="../lib/canvas2image.js"></script>
+
+    <!-- this plugin -->
+    <script language="javascript" type="text/javascript" src="../jquery.flot.saveAsImage.js"></script>
+	<script type="text/javascript">
+
+	    $(function () {
+	        var data = [[
+	            [1, 2],
+	            [3, 4],
+	            [5, 6]
+	        ]];
+
+	        var options = {
+	            grid: {
+	                show: true,
+	                borderColor: "#000",
+	                backgroundColor: { colors: ["#fff", "#fff"] }
+	            }
+	        };
+
+	        $(document).ready(function () {
+	            $.plot("#canvas-wrapper", data, options);
+	        });
+	    });
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Saving chart as image file</h2>
+	</div>
+
+	<div id="content">
+	    <div class="demo-container">
+            <div id="canvas-wrapper" class="demo-placeholder"></div>
+	    </div>
+        
+        <p>This example shows how to save the chart as an image file.</p>
+        <p>Right click on the chart and choose "Save as image..." option from the context menu.</p>
+
+	</div>
+
+	<div id="footer">
+		Copyright &copy; 2013 http://zizhujy.com
+	</div>
+
+</body>
+</html>
