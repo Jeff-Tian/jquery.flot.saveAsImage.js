@@ -55,7 +55,8 @@ Customizations:
                 //Canvas2Image.deleteStaleCanvasImage = deleteStaleCanvasImage;
                 deleteStaleCanvasImage(plot);
                 createImageFromCanvas(plot, plot.getOptions().imageFormat);
-                
+                // For ubuntu chrome:
+                setTimeout(function () { deleteStaleCanvasImage(plot); }, 500);
             }
         }
     }
@@ -120,7 +121,7 @@ Customizations:
         init: init,
         options: options,
         name: 'saveAsImage',
-        version: '1.2'
+        version: '1.3'
     });
 
 })(jQuery, Canvas2Image);
