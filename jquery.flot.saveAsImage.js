@@ -33,7 +33,7 @@ Customizations:
 
 */
 
-; (function ($, Canvas2Image, CanvasAsImage) {
+; (function ($, Canvas2Image) {
     var imageCreated = null;
     var mergedCanvas = null;
     var theClasses = null;
@@ -157,7 +157,7 @@ Customizations:
         init: init,
         options: options,
         name: 'saveAsImage',
-        version: '1.4'
+        version: '1.5'
     });
 
-})(jQuery, Canvas2Image, CanvasAsImage);
+})(jQuery, Canvas2Image);
