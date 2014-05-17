@@ -1,3 +1,11 @@
+canvasAsImage.js
+================
+
+Reference this file in your header of which page you are using canvas, then when you right click on your canvas, a context menu would appeared and gave you a option to save your drawings on canvas as image to your local disk.
+
+##Online examples:##
+http://zizhujy.com/GraphWorld
+
 jquery.flot.saveAsImage.js
 ==========================
 
@@ -10,28 +18,34 @@ Licensed under the MIT license.
 http://zizhujy.com/blog/post/2013/07/02/A-Flot-plugin-for-saving-canvas-image-to-local-disk.aspx
 
 ##Usage:##
-    Inside the <head></head> area of your html page, add the following lines:
+Inside the <head></head> area of your html page, add the following lines:
     
-    <script type="text/javascript" src="http://zizhujy.com/Scripts/base64.js"></script>
-    <script type="text/javascript" src="http://zizhujy.com/Scripts/drawing/canvas2image.js"></script>
-    <script type="text/javascript" src="http://zizhujy.com/Scripts/flot/jquery.flot.saveAsImage.js"></script>
-
-    Now you are all set. Right click on your flot canvas, you will see the "Save image as ..." option.
+```html
+<script type="text/javascript" src="http://zizhujy.com/Scripts/base64.js"></script>
+<script type="text/javascript" src="http://zizhujy.com/Scripts/drawing/canvas2image.js"></script>
+<script type="text/javascript" src="http://zizhujy.com/Scripts/flot/jquery.flot.saveAsImage.js"></script>
+```
+    
+Now you are all set. Right click on your flot canvas, you will see the "Save image as ..." option.
 
 ##Online examples:##
-    http://zizhujy.com/FunctionGrapher is using it, you can try right clicking on the function graphs and
-    you will see you can save the image to local disk.
+http://zizhujy.com/FunctionGrapher is using it, you can try right clicking on the function graphs and
+you will see you can save the image to local disk.
 
 ##Dependencies:##
-    This plugin references the base64.js and canvas2image.js.
+
+This plugin references the base64.js and canvas2image.js.
 
 ##Customizations:##
-    The default behavior of this plugin is dynamically creating an image from the flot canvas, and then puts the 
-    image above the flot canvas. If you want to add some css effects on to the dynamically created image, you can
-    apply whatever css styles on to it, only remember to make sure the css class name is set correspondingly by 
-    the options object of this plugin. You can also customize the image format through this options object:
 
-    options: {
-        imageClassName: "canvas-image",
-        imageFormat: "png"
-    }
+The default behavior of this plugin is dynamically creating an image from the flot canvas, and then puts the 
+image above the flot canvas. If you want to add some css effects on to the dynamically created image, you can
+apply whatever css styles on to it, only remember to make sure the css class name is set correspondingly by 
+the options object of this plugin. You can also customize the image format through this options object:
+
+```javascript
+options: {
+    imageClassName: "canvas-image",
+    imageFormat: "png"
+}
+```
