@@ -34,7 +34,7 @@
             eval("imageOptions = " + $(canvas).attr("canvasAsImage"));
 
             if (!!imageOptions) {
-                imageOptions.class && $(img).attr("class", imageOptions.class);
+                imageOptions["class"] && $(img).attr("class", imageOptions["class"]);
             }
 
             $(img).css({ "border": $(canvas).css("border"), "z-index": "9999", "position": "absolute" });
