@@ -21,9 +21,9 @@ http://zizhujy.com/blog/post/2013/07/02/A-Flot-plugin-for-saving-canvas-image-to
 ```html
 bower install flot.saveasimage
 
-<script type="text/javascript"> src="bower_components/flot.saveasimage/lib/base64.js">
-<script type="text/javascript"> src="bower_components/flot.saveasimage/lib/canvas2image.js">
-<script type="text/javascript"> src="bower_components/flot.saveasimage/jquery.flot.saveAsImage.js">
+<script type="text/javascript" src="bower_components/flot.saveasimage/lib/base64.js">
+<script type="text/javascript" src="bower_components/flot.saveasimage/lib/canvas2image.js">
+<script type="text/javascript" src="bower_components/flot.saveasimage/jquery.flot.saveAsImage.js">
 ```
     
 Now you are all set. Right click on your flot canvas, you will see the "Save image as ..." option.
