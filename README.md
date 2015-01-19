@@ -17,13 +17,13 @@ Licensed under the MIT license.
 ##Screen shot:##
 http://zizhujy.com/blog/post/2013/07/02/A-Flot-plugin-for-saving-canvas-image-to-local-disk.aspx
 
-##Usage:##
-Inside the <head></head> area of your html page, add the following lines:
-    
+##Installation and usage:##
 ```html
-<script type="text/javascript" src="http://zizhujy.com/Scripts/base64.js"></script>
-<script type="text/javascript" src="http://zizhujy.com/Scripts/drawing/canvas2image.js"></script>
-<script type="text/javascript" src="http://zizhujy.com/Scripts/flot/jquery.flot.saveAsImage.js"></script>
+bower install flot.saveasimage
+
+<script type="text/javascript"> src="bower_components/flot.saveasimage/lib/base64.js">
+<script type="text/javascript"> src="bower_components/flot.saveasimage/lib/canvas2image.js">
+<script type="text/javascript"> src="bower_components/flot.saveasimage/jquery.flot.saveAsImage.js">
 ```
     
 Now you are all set. Right click on your flot canvas, you will see the "Save image as ..." option.
