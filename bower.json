@@ -1,0 +1,26 @@
+{
+  "name": "flot.saveasimage",
+  "main": "jquery.flot.saveAsImage.js",
+  "version": "1.0.0",
+  "homepage": "http://jeff-tian.github.io/jquery.flot.saveAsImage.js/",
+  "authors": [
+    "Jeff.Tian@outlook.com"
+  ],
+  "description": "Flot plugin that adds a function to allow user save the current graph as an image by right clicking on the graph and then choose \"Save image as ...\" to local disk.",
+  "keywords": [
+    "jquery",
+    "flot",
+    "image"
+  ],
+  "dependencies": {
+    "flot": "*"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
