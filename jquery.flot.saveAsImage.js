@@ -163,7 +163,7 @@ Customizations:
         init: init,
         options: options,
         name: 'saveAsImage',
-        version: '1.5'
+        version: '1.6'
     });
 
 })(jQuery, Canvas2Image);
