@@ -85,6 +85,12 @@ Customizations:
         if (!!theClasses) {
             theMergedCanvas = new theClasses.Canvas("mergedCanvas", plot.getPlaceholder());
             var mergedContext = theMergedCanvas.context;
+            var plotCanvas = plot.getCanvas();
+            
+            theMergedCanvas.element.height = plotCanvas.height;
+            theMergedCanvas.element.width = plotCanvas.width;
+            
+            mergedContext.restore();
 
             $(theMergedCanvas).css({
                 "visibility": "hidden",
@@ -92,7 +98,7 @@ Customizations:
                 "position": "absolute"
             });
 
-            var $canvases = $(plot.getPlaceholder()).find("canvas");
+            var $canvases = $(plot.getPlaceholder()).find("canvas").not('.mergedCanvas');
             $canvases.each(function(index, canvas) {
                 mergedContext.drawImage(canvas, 0, 0);
             });
@@ -157,7 +163,7 @@ Customizations:
         init: init,
         options: options,
         name: 'saveAsImage',
-        version: '1.5'
+        version: '1.6'
     });
 
 })(jQuery, Canvas2Image);
